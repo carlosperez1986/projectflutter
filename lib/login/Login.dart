@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:projectflutter/account/account.dart';
 import './Widgets/FormCard.dart';
 import 'Widgets/SocialIcon.dart';
 import 'CustomIcons.dart';
@@ -145,7 +146,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                   Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AccountScreen(islogged: 1,),
+                                  ),
+                                );
+                              },
                               child: Center(
                                 child: Text(
                                   'Acceder',
@@ -234,7 +242,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                           Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AccountScreen(),
+                                  ),
+                                );
+                        },
                         child: Text(
                           'Crear',
                           style: TextStyle(
