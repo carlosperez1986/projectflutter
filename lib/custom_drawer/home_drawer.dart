@@ -1,6 +1,6 @@
 import 'package:projectflutter/app_theme.dart';
 import 'package:flutter/material.dart';
-
+import 'package:adhara_socket_io/adhara_socket_io.dart';
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer(
       {Key key,
@@ -16,14 +16,62 @@ class HomeDrawer extends StatefulWidget {
   @override
   _HomeDrawerState createState() => _HomeDrawerState();
 }
-
+enum ConnectionStatus{
+  connected,
+  disconnected
+}
 class _HomeDrawerState extends State<HomeDrawer> {
   List<DrawerList> drawerList;
+ 
+  SocketIOManager manager = SocketIOManager();
+  SocketIO socket;
+  var status = ConnectionStatus.disconnected;
+
+
+  List<String> messages = new List<String>();
+  static_socketStatus(dynamic data) { 
+	  print("Socket status: " + data); 
+  } 
+  _newsEventHandler(dynamic message){
+    print("news received");
+    setState(() {
+      messages.add(message.toString());
+    });
+  }
+
   @override
   void initState() {
     setdDrawerListArray();
+ 
     super.initState();
+  setupSocketConnections() ;
   }
+
+   void setupSocketConnections() async {
+      socket = await manager.createInstance(SocketOptions('https://node-chat-flutter.herokuapp.com/'));
+      socket.onConnect((data){
+        status = ConnectionStatus.connected;
+        print("connected..."); 
+      });
+      socket.onConnectError((data){
+        print("Connection Error"+ data) ;
+      });
+      socket.onConnectTimeout((data){
+        print("Connection Timed Out");
+      });
+      socket.on("news", (data){   //sample event
+       _newsEventHandler(data);
+      });
+      socket.connect();
+
+           socket.emitWithAck("send_message", ["Hello world!"]).then( (data) {
+    // this callback runs when this specific message is acknowledged by the server
+            print(data);
+          })
+          .catchError((onError){
+              print(onError);
+          });
+    }
 
   void setdDrawerListArray() {
     drawerList = <DrawerList>[
@@ -63,6 +111,12 @@ class _HomeDrawerState extends State<HomeDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    if (socket != null) { 
+      socket.on("connected", static_socketStatus); 
+      socket.emit("chat_message",["connect from mobile"] ); 
+     // socketIO.sendMessage("connectedx", "", _socketStatus); 
+      
+    }
     return Scaffold(
       backgroundColor: AppTheme.notWhite.withOpacity(0.5),
       body: Column(

@@ -1,4 +1,5 @@
- import 'package:projectflutter/hotel_booking/hotel_app_theme.dart';
+ import 'package:projectflutter/chat/chat.dart';
+import 'package:projectflutter/hotel_booking/hotel_app_theme.dart';
 import 'package:projectflutter/hotel_booking/hotel_list_screen.dart';
 import 'package:projectflutter/login/Login.dart';
 
@@ -72,7 +73,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
           tabIconsList: tabIconsList,
           addClick: () {},
           changeIndex: (index) {
-            if (index == 0 || index == 2) {
+            if (index == 0) {
                 animationController.reverse().then((data) {
                 if (!mounted) return;
                 setState(() {
@@ -81,7 +82,9 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                   
                 }); 
               }); 
-            } else if (index == 1 || index == 3) {
+            } 
+            else if (index == 1 || index == 3) 
+            {
               animationController.reverse().then((data) {
                 if (!mounted) return;
                 setState(() {
@@ -89,7 +92,14 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                   tabBody = LoginScreen();
                 });
               });
-              }
+            }
+            else if (index == 2) 
+            {
+                setState(() {
+                   newtitle="Chat";
+                  tabBody = ChatScreen();
+                });
+            }
           }
                )
                )

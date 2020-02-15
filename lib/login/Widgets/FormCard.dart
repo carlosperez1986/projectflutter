@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FormCard extends StatelessWidget {
+
+    final txtUsuario = TextEditingController();
+    final txtPassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,7 +50,8 @@ class FormCard extends StatelessWidget {
                 fontSize: ScreenUtil.getInstance().setSp(26),
               )
             ),
-            TextField(
+            TextField( 
+              controller: txtUsuario,
               decoration: InputDecoration(
                 hintText: 'Usuario',
                 hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0 )
@@ -55,7 +60,7 @@ class FormCard extends StatelessWidget {
             SizedBox(
               height: ScreenUtil.getInstance().setHeight(30),
             ),
-            Text(
+            Text( 
               'Contraseña',
               style: TextStyle(
                 fontFamily: 'Poppins-Medium',
@@ -63,6 +68,7 @@ class FormCard extends StatelessWidget {
               )
             ),
             TextField(
+              controller: txtPassword,
               obscureText: true,
               decoration: InputDecoration(
                 hintText: 'Contraseña',
