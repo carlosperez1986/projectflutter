@@ -85,9 +85,9 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
       body: Container(
         child: navigateStart
       ))),
-    );
-    
+    ); 
   }
+  
   Widget list(){
     return Stack(
             children: <Widget>[

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:page_indicator/page_indicator.dart';
-import 'package:projectflutter/hotel_booking/detail/common/icons.dart';
 import 'package:projectflutter/hotel_booking/detail/common/navigation/fade_route.dart';
 import 'package:projectflutter/hotel_booking/detail/common/theme.dart';
 import 'package:projectflutter/hotel_booking/detail/common/widget/blur_icon.dart';

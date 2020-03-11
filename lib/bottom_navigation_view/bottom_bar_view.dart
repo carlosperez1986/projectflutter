@@ -39,7 +39,7 @@ class _BottomBarViewState extends State<BottomBarView>
               transform: new Matrix4.translationValues(0.0, 0.0, 0.0),
               child: new PhysicalShape(
                 color: Colors.white,
-                elevation: 16.0,
+                elevation: 0.0,
                 clipper: TabClipper(
                     radius: Tween(begin: 0.0, end: 1.0)
                             .animate(CurvedAnimation(

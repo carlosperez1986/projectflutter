@@ -67,9 +67,12 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
     return Theme(
       data: HotelAppTheme.buildLightTheme(),
       child: Container(
+
         child: Scaffold( 
-        body: tabBody,
-        bottomNavigationBar: BottomBarView(
+          
+        body:  tabBody,
+        bottomNavigationBar:  
+          BottomBarView( 
           tabIconsList: tabIconsList,
           addClick: () {},
           changeIndex: (index) {
